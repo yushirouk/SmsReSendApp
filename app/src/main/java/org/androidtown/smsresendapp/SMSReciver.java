@@ -5,13 +5,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.Date;
+import java.util.HashMap;
 
 
 public class SMSReciver extends BroadcastReceiver {
+
+    private HashMap m = null;
+
+    SMSReciver(){
+        m = new HashMap();
+        m.put("15884000", "BC카드");
+        m.put("15882588", "기업은행");
+        m.put("15993333", "카카오뱅크");
+        m.put("01046517699", "내폰");
+    }
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -27,7 +40,10 @@ public class SMSReciver extends BroadcastReceiver {
             Date receivedDate = new Date(messages[0].getTimestampMillis()); // 수신 날짜
             String date = receivedDate.toString();
 
-
+            // TODO 메세지 전송
+            if(m.containsKey(sender)){
+                sendSms("01046517699", m.get(sender)+"부터의 메세지:" +  contents);
+            }
 
 
             //아래의 내용은 인텐트를 통해 받은 내용을 화면으로 출력하는 것이다.
@@ -37,7 +53,7 @@ public class SMSReciver extends BroadcastReceiver {
 
 
             //MainActivity로 보낼 인텐트 만들고 메시지 정보 부가데이터로 넣기
-            Intent mIntent = new Intent(context.getApplicationContext(), MainActivity.class);
+            Intent mIntent = new Intent(context.getApplicationContext(), SMSActivity.class);
             mIntent.putExtra("sender", sender);
             mIntent.putExtra("contents", contents);
             mIntent.putExtra("date", date);
@@ -76,5 +92,16 @@ public class SMSReciver extends BroadcastReceiver {
         }
 
         return messages;
+    }
+
+
+    private void sendSms(String sender, String contents){
+        try {
+            //전송
+            SmsManager smsManager = SmsManager.getDefault();
+            smsManager.sendTextMessage(sender, null, contents, null, null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

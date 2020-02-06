@@ -20,6 +20,9 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SMSActivity">
+        </activity>
+
         <receiver
             android:name=".SMSReciver"
             android:enabled="true"

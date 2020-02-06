@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".SMSActivity">
 
     <TextView
-        android:id="@+id/mainview"
+        android:id="@+id/textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="메인페이지"
+        android:text="수신받은 메시지가 표시됩니다."
         android:textSize="20dp"
         android:maxLines="40"
         android:layout_marginTop="350dp"
