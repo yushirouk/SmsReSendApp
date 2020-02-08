@@ -47,6 +47,8 @@ public class SMSActivity extends AppCompatActivity {
         //텍스트뷰에 메시지 정보 설정
         Toast.makeText(getApplicationContext(), sender+ "으로부터 문자 도착", Toast.LENGTH_LONG).show();
         textView.setText("보낸사람: "+sender+"\n내용: "+contents+"\n날짜: "+date);
+
+        //setContentView(textView);
     }
 
     // 새로운 인텐트가 도착하면 호출되는 콜백 메소드

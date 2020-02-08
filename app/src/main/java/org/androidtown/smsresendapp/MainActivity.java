@@ -12,6 +12,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 public class MainActivity extends AppCompatActivity {
+    TextView textView; //메시지를 표시하기 위한 텍스트뷰
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
