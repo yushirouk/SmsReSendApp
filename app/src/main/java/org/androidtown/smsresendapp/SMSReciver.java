@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.telephony.SmsManager;
 import android.telephony.SmsMessage;
 import android.util.Log;
 
@@ -26,9 +27,6 @@ public class SMSReciver extends BroadcastReceiver {
             String contents = messages[0].getMessageBody(); // 메시지 내용
             Date receivedDate = new Date(messages[0].getTimestampMillis()); // 수신 날짜
             String date = receivedDate.toString();
-
-
-
 
             //아래의 내용은 인텐트를 통해 받은 내용을 화면으로 출력하는 것이다.
             //내가 만들고자 하는 앱에서는 사용할 필요가 없다. (백그라운드에서 돌기만 하면 됨.)
