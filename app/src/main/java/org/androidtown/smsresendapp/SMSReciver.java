@@ -34,16 +34,16 @@ public class SMSReciver extends BroadcastReceiver {
 
 
             //MainActivity로 보낼 인텐트 만들고 메시지 정보 부가데이터로 넣기
-            Intent mIntent = new Intent(context.getApplicationContext(), SMSActivity.class);
+            Intent mIntent = new Intent(context.getApplicationContext(), SmsService.class);
             mIntent.putExtra("sender", sender);
             mIntent.putExtra("contents", contents);
             mIntent.putExtra("date", date);
 
             //브로드캐스트 수신자는 화면이 없으므로 새로운 액티비티 화면 새로 띄우려면 인텐트에 FLAG_ACTIVITY_NEW_TASK 추가해야함
-            mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // -> onCreate() 메소드에서 처리
+            //mIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); // -> onCreate() 메소드에서 처리
 
             //이미 액티비티가 메모리에 존재하면 새로 만들지 말고 사용 -> onNewIntent() 메소드에서 처리
-            mIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            //mIntent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP | Intent.FLAG_ACTIVITY_CLEAR_TOP);
 
             /*
             1. 만들어진 액티비티가 없으면 onCreate() 메소드에서 인텐트를 처리
@@ -51,7 +51,8 @@ public class SMSReciver extends BroadcastReceiver {
              */
 
             //액티비티 띄우기
-            context.getApplicationContext().startActivity(mIntent);
+            //context.getApplicationContext().startActivity(mIntent);
+            context.getApplicationContext().startService(mIntent);
         }
     }
 
